@@ -1,5 +1,11 @@
 const getByClass = className => document.getElementsByClassName(className)[0];
 
+const hide = (...elements) =>
+  elements.forEach(element => (element.style.opacity = 0));
+
+const show = (...elements) =>
+  elements.forEach(element => (element.style.opacity = 1));
+
 const changeParent = (element, newParent, afterTransitionCallback) => {
   const getRect = () => ({ x: element.offsetLeft, y: element.offsetTop });
   const withReflow = fn => {
@@ -46,12 +52,9 @@ const layer2Description = getByClass("layer-2__description");
 const askForPriceButton = getByClass("ask-for-price-button");
 
 showMoreButton.onclick = () => {
-  showMoreButton.style.opacity = 0;
-  layer1GalleryControls.style.opacity = 0;
+  hide(showMoreButton, layer1GalleryControls);
   showLayer(layer2);
-  layer2Description.style.opacity = 1;
-  askForPriceButton.style.opacity = 1;
-  backButton.style.opacity = 1;
+  show(layer2Description, askForPriceButton, backButton);
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
   background.classList.add("background--extended-border");
 };
