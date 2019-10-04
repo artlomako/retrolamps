@@ -30,10 +30,14 @@ const showLayer = layer => {
   layer.style["z-index"] = 100;
 };
 
+const background = getByClass("background");
+
 const mainText = getByClass("main-text");
 
 const layer1 = getByClass("layer-1");
 const layer1MainTextContainer = getByClass("layer-1__main-text-container");
+const layer1GalleryControls = getByClass("layer-1__gallery-controls");
+
 const showMoreButton = getByClass("layer-1__show-more-button");
 
 const layer2 = getByClass("layer-2");
@@ -43,8 +47,10 @@ const askForPriceButton = getByClass("ask-for-price-button");
 
 showMoreButton.onclick = () => {
   showMoreButton.style.opacity = 0;
+  layer1GalleryControls.style.opacity = 0;
   showLayer(layer2);
   layer2Description.style.opacity = 1;
   askForPriceButton.style.opacity = 1;
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
+  background.classList.add("background--extended-border");
 };
