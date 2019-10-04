@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
-  <meta charset="utf-8" />
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="The HTML5 Herald" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald" />
-  <link rel="stylesheet" href="index.css" />
-</head>
-
-<body>
-  <div class="main-container">
+  <body>
+    <div class="main-container">
       <img class="main-container__background" src="./background.jpg" />
-    <div class="main-container__header">
-      RetroLamps
+      <div class="main-container__header">
+        RetroLamps
+      </div>
+      <div class="main-container__body">
+        <div class="layer layer-1">
+          <div class="main-text">
+            <div class="main-text__first-line">
+              Lampa stylizowana na projekcie
+            </div>
+            <div class="main-text__second-line">
+              Hans Agne Jakobsson z lat 60.
+            </div>
+          </div>
+          <button class="layer-1__show-more-button">
+            Zobacz więcej
+          </button>
+        </div>
+        <div class="layer layer-2">Opis lampy</div>
+        <div class="layer layer-3">Formularz</div>
+      </div>
+      <div class="main-container__footer">
+        footer
+      </div>
     </div>
-    <div class="main-container__body">
-      <div class="layer layer-1">Retro lampa</div>
-      <div class="layer layer-2">Opis lampy</div>
-      <div class="layer layer-3">Formularz</div>
-    </div>
-    <div class="main-container__footer">
-      footer
-    </div>
-  </div>
 
-  <script src="index.js"></script>
-</body>
-
+    <script src="index.js"></script>
+  </body>
 </html>

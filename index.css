@@ -3,7 +3,7 @@
 * {
   font-family: "Montserrat", sans-serif;
   letter-spacing: 4px;
-  color: #ffffff;
+  color: #fff;
 }
 
 html,
@@ -32,6 +32,7 @@ body {
 
 .main-container__body {
   flex-grow: 1;
+  position: relative;
 }
 
 .main-container__footer {
@@ -39,10 +40,39 @@ body {
 
 .layer {
   position: absolute;
+  height: 100%;
 }
 
 .layer-1 {
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-left: 5rem;
+}
+
+.layer-1__show-more-button {
+  text-transform: uppercase;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  color: #fff;
+  border-width: 1px 0;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+.main-text {
+  font-size: 2rem;
+}
+
+.main-text__first-line {
+  font-weight: 200;
+}
+
+.main-text__second-line {
+  font-weight: 600;
 }
 
 .layer-2 {
