@@ -31,7 +31,7 @@ const showLayer = layer => {
 };
 
 const background = getByClass("background");
-
+const backButton = getByClass("back-button");
 const mainText = getByClass("main-text");
 
 const layer1 = getByClass("layer-1");
@@ -51,6 +51,7 @@ showMoreButton.onclick = () => {
   showLayer(layer2);
   layer2Description.style.opacity = 1;
   askForPriceButton.style.opacity = 1;
+  backButton.style.opacity = 1;
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
   background.classList.add("background--extended-border");
 };

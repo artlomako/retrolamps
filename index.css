@@ -25,6 +25,20 @@ body {
   transition: all 400ms;
 }
 
+.button--control {
+  font-size: 2rem;
+  padding: 0.8rem 1.5rem;
+  font-weight: 400;
+}
+
+.button--full-border {
+  border-width: 1px 0 1px 1px;
+}
+
+.button--full-border:last-child {
+  border-width: 1px;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -60,11 +74,6 @@ body {
   z-index: 100;
   flex-grow: 1;
   position: relative;
-}
-
-.main-container__footer {
-  z-index: 100;
-  padding: 0 2rem 2rem 2rem;
 }
 
 .layer {
@@ -103,20 +112,6 @@ body {
   transition: opacity 400ms;
 }
 
-.layer-1__gallery-controls__button {
-  font-size: 2rem;
-  padding: 0.8rem 1.5rem;
-  font-weight: 400;
-}
-
-.button--grouped {
-  border-width: 1px 0 1px 1px;
-}
-
-.button--grouped:last-child {
-  border-width: 1px;
-}
-
 .layer-2 {
   z-index: 0;
   visibility: hidden;
@@ -129,6 +124,7 @@ body {
 .layer-2__description-container {
   width: 25rem;
   margin-top: 3rem;
+  padding-bottom: 1rem;
 }
 
 .layer-2__description {
@@ -149,4 +145,15 @@ body {
 .layer-3 {
   z-index: 0;
   visibility: hidden;
+}
+
+.main-container__footer {
+  z-index: 100;
+  padding: 0 2rem 2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-button {
+  opacity: 0;
 }
