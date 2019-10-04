@@ -112,6 +112,26 @@ body {
   margin-left: 5rem;
 }
 
+.layer-2__description-container {
+  width: 25rem;
+  margin-top: 3rem;
+}
+
+.layer-2__description {
+  opacity: 0;
+  transition: opacity 500ms;
+  line-height: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 200;
+  letter-spacing: 3px;
+  margin-bottom: 4rem;
+}
+
+.ask-for-price-button {
+  opacity: 0;
+  width: 100%;
+}
+
 .layer-3 {
   z-index: 0;
   visibility: hidden;
