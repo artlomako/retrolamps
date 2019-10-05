@@ -20,7 +20,7 @@
       <div class="main-container__body">
         <div class="layer layer-1">
           <div class="layer-1__main-text-container">
-            <div class="main-text">
+            <div class="main-text hideable">
               <div class="main-text__first-line">
                 Lampa stylizowana na projekcie
               </div>
@@ -29,32 +29,49 @@
               </div>
             </div>
           </div>
-          <button class="button layer-1__show-more-button">
+          <button class="button layer-1__show-more-button hideable">
             Zobacz więcej
           </button>
         </div>
         <div class="layer layer-2">
           <div class="layer-2__main-text-container"></div>
           <div class="layer-2__description-container">
-            <div class="layer-2__description">
+            <div class="layer-2__description hideable hidden">
               Wykonana z drewna bukowego z bakelitową oprawką E27. Regulowany
               klosz za pomocą listewek, dzięki czemu można decydować o natężeniu
               światła w pomieszczeniu.
             </div>
-            <button class="button ask-for-price-button">Zapytaj o cenę</button>
+            <div class="layer-2__ask-for-price-button-container">
+              <button class="button ask-for-price-button hideable hidden">
+                Zapytaj o cenę
+              </button>
+            </div>
           </div>
         </div>
-        <div class="layer layer-3">Formularz</div>
+        <div class="layer layer-3">
+          <div class="layer-3__main-text-container"></div>
+          <div class="layer-3__container">
+            <div class="layer-3__title hideable hidden">
+              Lampa stylizowana na projekcie Hans Agne Jakobsson z lat 60.
+            </div>
+            <div class="layer-3__description hideable hidden">
+              Wykonana z drewna bukowego z bakelitową oprawką E27. Regulowany
+              klosz za pomocą listewek, dzięki czemu można decydować o natężeniu
+              światła w pomieszczeniu.
+            </div>
+            <div class="layer-3__ask-for-price-button-container"></div>
+          </div>
+        </div>
       </div>
       <div class="main-container__footer">
         <div class="back-button-container">
           <button
-            class="button button--control button--full-border back-button"
+            class="button button--control button--full-border back-button hideable hidden"
           >
             <
           </button>
         </div>
-        <div class="layer-1__gallery-controls">
+        <div class="layer-1__gallery-controls hideable">
           <button class="button button--full-border button--control">
             <
           </button>

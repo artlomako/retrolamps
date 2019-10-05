@@ -19,10 +19,9 @@ body {
   padding: 1.5rem 2rem;
   background: transparent;
   color: #fff;
-  border-width: 1px 0;
+  /* border-width: 1px 0; */
   cursor: pointer;
   width: fit-content;
-  transition: all 400ms;
 }
 
 .button--control {
@@ -74,11 +73,15 @@ body {
   z-index: 100;
   flex-grow: 1;
   position: relative;
+  overflow: hidden;
 }
 
 .layer {
   position: absolute;
   height: 100%;
+  width: 100%;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
 }
 
 .layer-1 {
@@ -109,7 +112,6 @@ body {
 .layer-1__gallery-controls {
   display: flex;
   justify-content: flex-end;
-  transition: opacity 400ms;
 }
 
 .layer-2 {
@@ -117,19 +119,16 @@ body {
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   margin-left: 5rem;
+  padding-top: 5rem;
 }
 
 .layer-2__description-container {
   width: 25rem;
   margin-top: 3rem;
-  padding-bottom: 1rem;
 }
 
 .layer-2__description {
-  opacity: 0;
-  transition: opacity 400ms;
   line-height: 1.2rem;
   font-size: 0.8rem;
   font-weight: 200;
@@ -138,13 +137,38 @@ body {
 }
 
 .ask-for-price-button {
-  opacity: 0;
   width: 100%;
 }
 
 .layer-3 {
   z-index: 0;
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layer-3__main-text-container {
+  width: fit-content;
+}
+
+.layer-3__container {
+  min-width: 10rem;
+  max-width: 20rem;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.layer-3__description {
+  line-height: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 200;
+  letter-spacing: 3px;
+  margin-top: 2rem;
 }
 
 .main-container__footer {
@@ -154,6 +178,10 @@ body {
   justify-content: space-between;
 }
 
-.back-button {
+.hideable {
+  transition: opacity 400ms;
+}
+
+.hidden {
   opacity: 0;
 }
