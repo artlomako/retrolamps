@@ -69,6 +69,10 @@ body {
   padding: 2rem 2rem 0 2rem;
 }
 
+.header__logo{
+  max-height: 2.5rem;
+}
+
 .main-container__body {
   z-index: 100;
   flex-grow: 1;
