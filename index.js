@@ -10,27 +10,29 @@ const changeParent = (element, newParent, afterTransitionCallback) => {
   const getRect = () => ({ x: element.offsetLeft, y: element.offsetTop });
   const withReflow = fn => {
     fn();
-    element.getClientRects();
+    element.innerText;
   };
 
   const oldRect = getRect();
   withReflow(() => newParent.appendChild(element));
-
   const newRect = getRect();
-  withReflow(
-    () =>
-      (element.style.transform = `translate(${oldRect.x -
-        newRect.x}px, ${oldRect.y - newRect.y}px)`)
-  );
-  element.style.transition = "all 400ms";
-  element.style.transform = "";
-  setTimeout(afterTransitionCallback, 500);
+
+  element.style.transform = `translateY(${oldRect.y - newRect.y}px)`;
+
+  anime({
+    targets: element,
+    translateY: 0,
+    duration: 400,
+    easing: "easeInOutQuad",
+    complete: afterTransitionCallback
+  });
 };
 
 const hideLayer = layer => {
   layer.style.visibility = "hidden";
   layer.style["z-index"] = 0;
 };
+
 const showLayer = layer => {
   layer.style.visibility = "visible";
   layer.style["z-index"] = 100;
@@ -57,4 +59,11 @@ showMoreButton.onclick = () => {
   show(layer2Description, askForPriceButton, backButton);
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
   background.classList.add("background--extended-border");
+};
+
+backButton.onclick = () => {
+  showLayer(layer1);
+  show(showMoreButton);
+  hide(layer2Description, askForPriceButton, backButton);
+  changeParent(mainText, layer1MainTextContainer, () => hideLayer(layer2));
 };
