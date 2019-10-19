@@ -16,26 +16,31 @@ body {
 
 .button {
   text-transform: uppercase;
-  padding: 1.5rem 2rem;
+  padding: 0 2rem;
   background: transparent;
   color: #fff;
-  /* border-width: 1px 0; */
+  border-width: 1px 0;
   cursor: pointer;
   width: fit-content;
+  height: 3.5rem;
 }
 
-.button--control {
-  font-size: 2rem;
-  padding: 0.8rem 1.5rem;
-  font-weight: 400;
+.arrow-button {
+  width: 3.5rem;
+  border-left-width: 1px;
+  padding: 0;
+  background-image: url("./left-arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
 }
 
-.button--full-border {
-  border-width: 1px 0 1px 1px;
+.arrow-button:last-child {
+  border-right-width: 1px;
 }
 
-.button--full-border:last-child {
-  border-width: 1px;
+.arrow-button--right {
+  background-image: url("./right-arrow.svg");
 }
 
 .main-container {
@@ -69,7 +74,7 @@ body {
   padding: 2rem 2rem 0 2rem;
 }
 
-.header__logo{
+.header__logo {
   max-height: 2.5rem;
 }
 
