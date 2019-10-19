@@ -8,7 +8,6 @@
   const oldRect = getRect();
   withReflow(() => newParent.appendChild(element));
   const newRect = getRect();
-
   element.style.transform = `translateX(${oldRect.x -
     newRect.x}px) translateY(${oldRect.y - newRect.y}px)`;
 
@@ -16,7 +15,7 @@
     targets: element,
     translateX: 0,
     translateY: 0,
-    width: newRect.width,
+    width: newParent.getBoundingClientRect().width,
     duration: 400,
     easing: "easeInOutQuad",
     complete: afterTransitionCallback

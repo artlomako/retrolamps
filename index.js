@@ -19,8 +19,11 @@ const showLayer = layer => {
   layer.style["z-index"] = 100;
 };
 
+// state
 let currentLayer = 1;
+let agreementChecked = false;
 
+// elements
 const background = getByClass("background");
 const backgroundImage = getByClass("background__image");
 const backButton = getByClass("back-button");
@@ -50,6 +53,14 @@ const layer3AskForPriceButtonContainer = getContainer(
 const layer3Description = getByClass("layer-3__description");
 const layer3Title = getByClass("layer-3__title");
 
+const contactFormAgreementCheckbox = getByClass(
+  "contact-form__agreement-checkbox"
+);
+
+const contactForm = getByClass("contact-form");
+
+const checkboxCheckmark = getByClass("checkbox__checkmark");
+
 showMoreButton.onclick = () => {
   currentLayer = 2;
   hide(showMoreButton, layer1GalleryControls);
@@ -63,7 +74,7 @@ showMoreButton.onclick = () => {
 backButton.onclick = () => {
   if (currentLayer === 2) {
     showLayer(layer1);
-    show(showMoreButton);
+    show(showMoreButton, layer1GalleryControls);
     hide(layer2Description, askForPriceButton, backButton);
     changeParent(mainText, layer1MainTextContainer, () => hideLayer(layer2));
     background.classList.remove("background--extended-border");
@@ -72,7 +83,7 @@ backButton.onclick = () => {
   }
   if (currentLayer === 3) {
     showLayer(layer2);
-    hide(layer3Description, layer3Title);
+    hide(layer3Description, layer3Title, contactForm);
     show(layer2Description);
     changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer3));
     changeParent(askForPriceButton, layer2AskForPriceButtonContainer);
@@ -84,19 +95,25 @@ askForPriceButton.onclick = () => {
   currentLayer = 3;
   showLayer(layer3);
   hide(layer2Description);
-  show(layer3Description, layer3Title);
-  changeParent(mainText, layer3MainTextContainer, () => {});
+  show(layer3Description, layer3Title, contactForm);
+  changeParent(mainText, layer3MainTextContainer, () => {
+    hideLayer(layer2);
+  });
   changeParent(askForPriceButton, layer3AskForPriceButtonContainer, () => {});
 };
 
-function adjustContainers() {
-  const mainTextHeight = mainText.offsetHeight;
-  const y = layer3MainTextContainer.getBoundingClientRect().y;
-  const yDiff = (y + mainTextHeight) * -1;
-  layer3MainTextContainer.style.transform = `translateX(${
-    layer2MainTextContainer.getBoundingClientRect().x
-  }px) translateY(${yDiff}px)`;
+contactFormAgreementCheckbox.onclick = () => {
+  const className = "checkbox__checkmark--checked";
+  if (agreementChecked) {
+    checkboxCheckmark.classList.remove(className);
+    agreementChecked = false;
+  } else {
+    checkboxCheckmark.classList.add(className);
+    agreementChecked = true;
+  }
+};
 
+function adjustContainers() {
   const setMinHeight = (element, sampleElement) =>
     (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
 
@@ -104,6 +121,12 @@ function adjustContainers() {
   setMinHeight(layer3MainTextContainer, mainText);
 
   setMinHeight(layer3AskForPriceButtonContainer, askForPriceButton);
+  askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
+  layer3MainTextContainer.style.left = `${
+    layer2MainTextContainer.getBoundingClientRect().x
+  }px`;
+  layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
+    .y + mainText.offsetHeight}px`;
 }
 
 window.onload = adjustContainers;

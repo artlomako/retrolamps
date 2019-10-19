@@ -22,11 +22,12 @@ body {
   border-width: 1px 0;
   cursor: pointer;
   width: fit-content;
-  height: 3.5rem;
+  height: 3rem;
+  border-color: #fff;
 }
 
 .arrow-button {
-  width: 3.5rem;
+  width: 3rem;
   border-left-width: 1px;
   padding: 0;
   background-image: url("./left-arrow.svg");
@@ -90,7 +91,6 @@ body {
   z-index: 100;
   flex-grow: 1;
   position: relative;
-  overflow: hidden;
 }
 
 .layer {
@@ -106,7 +106,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-left: 5rem;
+  padding-left: 5rem;
+}
+
+.layer-1__main-text-container {
+  width: fit-content;
 }
 
 .layer-1__show-more-button {
@@ -136,8 +140,12 @@ body {
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  margin-left: 5rem;
+  padding-left: 5rem;
   padding-top: 5rem;
+}
+
+.layer-2__main-text-container {
+  width: fit-content;
 }
 
 .layer-2__description-container {
@@ -153,10 +161,6 @@ body {
   margin-bottom: 4rem;
 }
 
-.ask-for-price-button {
-  width: 100%;
-}
-
 .layer-3 {
   z-index: 0;
   visibility: hidden;
@@ -167,25 +171,32 @@ body {
 
 .layer-3__main-text-container {
   width: fit-content;
+  position: absolute;
 }
 
 .layer-3__container {
   min-width: 10rem;
-  max-width: 20rem;
+  max-width: 25rem;
   text-align: center;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-grow: 1;
+}
+
+.layer-3__title {
+  font-size: 1rem;
+  margin: 1rem 0;
+  padding: 0 3rem;
 }
 
 .layer-3__description {
   line-height: 1.2rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 200;
   letter-spacing: 3px;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .main-container__footer {
@@ -201,4 +212,81 @@ body {
 
 .hidden {
   opacity: 0;
+}
+
+.text-field {
+  text-transform: uppercase;
+  padding: 0 2rem;
+  height: 3rem;
+  background: transparent;
+  color: #fff;
+  border: solid #fff;
+  border-width: 1px 0 0 0;
+  text-align: center;
+  letter-spacing: 2px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.5rem;
+  font-weight: bold;
+}
+
+.text-field::placeholder {
+  transition: opacity 300ms;
+  color: #fff;
+}
+
+.text-field:focus::placeholder {
+  opacity: 0;
+}
+
+.text-field:last-child {
+  border-bottom-width: 1px;
+}
+
+.text-field--no-uppercase {
+  text-transform: none;
+}
+
+.text-field--no-uppercase::placeholder {
+  text-transform: uppercase;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact-form__agreement-checkbox {
+  margin-bottom: 2rem;
+}
+
+.checkbox {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.checkbox__container {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #fff;
+  padding: 2px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-right: 0.5rem;
+}
+
+.checkbox__checkmark {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+}
+
+.checkbox__checkmark--checked {
+  opacity: 1;
 }
