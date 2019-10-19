@@ -22,6 +22,7 @@ const showLayer = layer => {
 let currentLayer = 1;
 
 const background = getByClass("background");
+const backgroundImage = getByClass("background__image");
 const backButton = getByClass("back-button");
 const mainText = getByClass("main-text");
 
@@ -56,6 +57,7 @@ showMoreButton.onclick = () => {
   show(layer2Description, askForPriceButton, backButton);
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
   background.classList.add("background--extended-border");
+  backgroundImage.classList.add("background__image--blurred");
 };
 
 backButton.onclick = () => {
@@ -65,6 +67,7 @@ backButton.onclick = () => {
     hide(layer2Description, askForPriceButton, backButton);
     changeParent(mainText, layer1MainTextContainer, () => hideLayer(layer2));
     background.classList.remove("background--extended-border");
+    backgroundImage.classList.remove("background__image--blurred");
     currentLayer = 1;
   }
   if (currentLayer === 3) {
