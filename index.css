@@ -310,4 +310,32 @@ body {
     opacity: 0.6;
     object-position: right;
   }
+
+  .layer-1 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-text {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .layer-1__show-more-button {
+    border-width: 1px;
+    height: 4rem;
+    padding: 0 2.5rem;
+  }
+
+  .layer-1__show-more-button > span {
+    display: none;
+  }
+
+  .layer-1__show-more-button:before {
+    font-weight: bold;
+    content: "Więcej";
+  }
 }
