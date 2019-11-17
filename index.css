@@ -291,3 +291,23 @@ body {
 .checkbox__checkmark--checked {
   opacity: 1;
 }
+
+@media (max-width: 425px) {
+  .main-container__header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__logo {
+    max-height: 3.5rem;
+  }
+
+  .background {
+    background-color: #000;
+  }
+
+  .background__image {
+    opacity: 0.6;
+    object-position: right;
+  }
+}
