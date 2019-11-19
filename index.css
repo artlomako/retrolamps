@@ -24,6 +24,7 @@ body {
   width: fit-content;
   height: 3rem;
   border-color: #fff;
+  border-style: solid;
 }
 
 .arrow-button {
