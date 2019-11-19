@@ -27,6 +27,7 @@ let agreementChecked = false;
 const background = getByClass("background");
 const backgroundImage = getByClass("background__image");
 const backButton = getByClass("back-button");
+const backButtonContainer = getByClass("back-button-container");
 const mainText = getByClass("main-text");
 
 const layer1 = getByClass("layer-1");
@@ -65,7 +66,7 @@ showMoreButton.onclick = () => {
   currentLayer = 2;
   hide(showMoreButton, layer1GalleryControls);
   showLayer(layer2);
-  show(layer2Description, askForPriceButton, backButton);
+  show(layer2Description, askForPriceButton, backButtonContainer);
   changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
   background.classList.add("background--extended-border");
   backgroundImage.classList.add("background__image--blurred");
@@ -75,7 +76,7 @@ backButton.onclick = () => {
   if (currentLayer === 2) {
     showLayer(layer1);
     show(showMoreButton, layer1GalleryControls);
-    hide(layer2Description, askForPriceButton, backButton);
+    hide(layer2Description, askForPriceButton, backButtonContainer);
     changeParent(mainText, layer1MainTextContainer, () => hideLayer(layer2));
     background.classList.remove("background--extended-border");
     backgroundImage.classList.remove("background__image--blurred");
@@ -117,6 +118,7 @@ function adjustContainers() {
   const setMinHeight = (element, sampleElement) =>
     (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
 
+  setMinHeight(layer1MainTextContainer, mainText);
   setMinHeight(layer2MainTextContainer, mainText);
   setMinHeight(layer3MainTextContainer, mainText);
 

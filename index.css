@@ -312,8 +312,8 @@ body {
   }
 
   .layer-1 {
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
     justify-content: center;
     align-items: center;
   }
@@ -337,5 +337,35 @@ body {
   .layer-1__show-more-button:before {
     font-weight: bold;
     content: "Więcej";
+  }
+
+  .main-container__footer {
+    justify-content: center;
+    position: relative;
+  }
+
+  .back-button-container {
+    position: absolute;
+    z-index: 100;
+  }
+
+  .back-button-container.hidden {
+    z-index: 0;
+  }
+
+  .layer-1__gallery-controls {
+    z-index: 100;
+  }
+
+  .layer-1__gallery-controls.hidden {
+    z-index: 0;
+  }
+
+  .layer-2 {
+    padding: 1rem 3.5rem 0 3.5rem;
+  }
+
+  .layer-2__description-container{
+    width: 100%;
   }
 }
