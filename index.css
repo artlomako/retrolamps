@@ -334,13 +334,37 @@ body {
     padding: 0 2.5rem;
   }
 
+  .layer-1__show-more-button.hidden {
+    opacity: unset;
+    visibility: hidden;
+    position: absolute;
+  }
+
   .layer-1__show-more-button > span {
     display: none;
+  }
+
+  @keyframes layer-1__show-more-button-transition12 {
+    0% {
+      content: "Więcej";
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      content: "Zapytaj o cenę";
+    }
   }
 
   .layer-1__show-more-button:before {
     font-weight: bold;
     content: "Więcej";
+  }
+
+  .layer-1__show-more-button.transition12:before {
+    animation: layer-1__show-more-button-transition12 400ms forwards ease-in-out;
   }
 
   .main-container__footer {
@@ -366,5 +390,50 @@ body {
 
   .layer-2__description-container {
     width: 100%;
+    margin-top: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .layer-2__description {
+    text-align: center;
+    line-height: 1.4rem;
+    margin-bottom: 0;
+  }
+
+  .ask-for-price-button {
+    height: 4rem;
+    border-width: 1px;
+    font-weight: bold;
+  }
+
+  .ask-for-price-button:before {
+    content: "Zapytaj o cenę";
+  }
+
+  @keyframes ask-for-price-button-transition21 {
+    0% {
+      content: "Zapytaj o cenę";
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      content: "Więcej";
+    }
+  }
+
+  .ask-for-price-button.transition21:before {
+    animation: ask-for-price-button-transition21 400ms forwards ease-in-out;
+  }
+
+  .ask-for-price-button.hidden {
+    position: absolute;
+    opacity: unset;
+    visibility: hidden;
   }
 }

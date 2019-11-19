@@ -20,6 +20,7 @@ const showLayer = layer => {
 };
 
 // state
+const mobile = window.outerWidth <= 425;
 let currentLayer = 1;
 let agreementChecked = false;
 
@@ -63,24 +64,61 @@ const contactForm = getByClass("contact-form");
 
 const checkboxCheckmark = getByClass("checkbox__checkmark");
 
-showMoreButton.onclick = () => {
-  currentLayer = 2;
-  hide(showMoreButton, layer1GalleryControls);
-  showLayer(layer2);
-  show(layer2Description, askForPriceButton, backButtonContainer);
-  changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
-  background.classList.add("background--extended-border");
-  backgroundImage.classList.add("background__image--blurred");
-};
+if (mobile) {
+  showMoreButton.onclick = () => {
+    currentLayer = 2;
+
+    hide(layer1GalleryControls);
+    showLayer(layer2);
+    showMoreButton.classList.add("transition12");
+    changeParent(showMoreButton, layer2AskForPriceButtonContainer, () => {
+      showMoreButton.classList.add("hidden");
+
+      show(askForPriceButton);
+
+      layer1ShowMoreButtonContainer.append(showMoreButton);
+      showMoreButton.classList.remove("transition12");
+      showMoreButton.style.width = "";
+    });
+    show(layer2Description, backButtonContainer);
+    changeParent(mainText, layer2MainTextContainer);
+    background.classList.add("background--extended-border");
+    // backgroundImage.classList.add("background__image--blurred");
+  };
+} else {
+  showMoreButton.onclick = () => {
+    currentLayer = 2;
+    hide(showMoreButton, layer1GalleryControls);
+    showLayer(layer2);
+    show(layer2Description, askForPriceButton, backButtonContainer);
+    changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
+    background.classList.add("background--extended-border");
+    backgroundImage.classList.add("background__image--blurred");
+  };
+}
 
 backButton.onclick = () => {
   if (currentLayer === 2) {
     showLayer(layer1);
-    show(showMoreButton, layer1GalleryControls);
-    hide(layer2Description, askForPriceButton, backButtonContainer);
-    changeParent(mainText, layer1MainTextContainer, () => hideLayer(layer2));
     background.classList.remove("background--extended-border");
-    backgroundImage.classList.remove("background__image--blurred");
+    hide(layer2Description, backButtonContainer);
+    askForPriceButton.classList.add("transition21");
+    changeParent(askForPriceButton, layer1ShowMoreButtonContainer, () => {
+      hide(askForPriceButton);
+      show(showMoreButton);
+
+      layer2AskForPriceButtonContainer.append(askForPriceButton);
+      askForPriceButton.classList.remove("transition21");
+      askForPriceButton.style.width = `${
+        layer2AskForPriceButtonContainer.getBoundingClientRect().width
+      }px`;
+    });
+    changeParent(mainText, layer1MainTextContainer);
+    hideLayer(layer2);
+
+    show(layer1GalleryControls);
+    showLayer(layer1);
+    // backgroundImage.classList.remove("background__image--blurred");
     currentLayer = 1;
   }
   if (currentLayer === 3) {
@@ -119,18 +157,26 @@ function adjustContainers() {
   const setMinHeight = (element, sampleElement) =>
     (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
 
+  const setMinWidth = (element, sampleElement) => {
+    element.style["min-width"] = `${sampleElement.offsetWidth}px`;
+    element.style["max-width"] = `${sampleElement.offsetWidth}px`;
+  };
+
   setMinHeight(layer1MainTextContainer, mainText);
   setMinHeight(layer1ShowMoreButtonContainer, showMoreButton);
+
   setMinHeight(layer2MainTextContainer, mainText);
   setMinHeight(layer3MainTextContainer, mainText);
 
-  setMinHeight(layer3AskForPriceButtonContainer, askForPriceButton);
   askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
   layer3MainTextContainer.style.left = `${
     layer2MainTextContainer.getBoundingClientRect().x
   }px`;
   layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
     .y + mainText.offsetHeight}px`;
+
+  setMinHeight(layer2AskForPriceButtonContainer, askForPriceButton);
+  setMinWidth(layer1ShowMoreButtonContainer, showMoreButton);
 }
 
 window.onload = adjustContainers;
