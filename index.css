@@ -116,7 +116,7 @@ body {
   width: fit-content;
 }
 
-.layer-1__show-more-button {
+.layer-1__show-more-button-container {
   margin-top: 4rem;
   margin-bottom: 5rem;
 }

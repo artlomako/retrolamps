@@ -32,6 +32,7 @@ const mainText = getByClass("main-text");
 
 const layer1 = getByClass("layer-1");
 const layer1MainTextContainer = getContainer(1, "main-text");
+const layer1ShowMoreButtonContainer = getContainer(1, "show-more-button");
 const layer1GalleryControls = getByClass("layer-1__gallery-controls");
 
 const showMoreButton = getByClass("layer-1__show-more-button");
@@ -119,6 +120,7 @@ function adjustContainers() {
     (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
 
   setMinHeight(layer1MainTextContainer, mainText);
+  setMinHeight(layer1ShowMoreButtonContainer, showMoreButton);
   setMinHeight(layer2MainTextContainer, mainText);
   setMinHeight(layer3MainTextContainer, mainText);
 
