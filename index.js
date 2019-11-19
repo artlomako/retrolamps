@@ -25,6 +25,7 @@ let currentLayer = 1;
 let agreementChecked = false;
 
 // elements
+const logo = getByClass("header__logo");
 const background = getByClass("background");
 const backgroundImage = getByClass("background__image");
 const backButton = getByClass("back-button");
@@ -83,6 +84,7 @@ if (mobile) {
     show(layer2Description, backButtonContainer);
     changeParent(mainText, layer2MainTextContainer);
     background.classList.add("background--extended-border");
+    logo.classList.add("header__logo--transparent");
     // backgroundImage.classList.add("background__image--blurred");
   };
 } else {
@@ -101,6 +103,8 @@ backButton.onclick = () => {
   if (currentLayer === 2) {
     showLayer(layer1);
     background.classList.remove("background--extended-border");
+    logo.classList.remove("header__logo--transparent");
+
     hide(layer2Description, backButtonContainer);
     askForPriceButton.classList.add("transition21");
     changeParent(askForPriceButton, layer1ShowMoreButtonContainer, () => {
@@ -119,6 +123,7 @@ backButton.onclick = () => {
     show(layer1GalleryControls);
     showLayer(layer1);
     // backgroundImage.classList.remove("background__image--blurred");
+
     currentLayer = 1;
   }
   if (currentLayer === 3) {

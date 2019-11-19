@@ -436,4 +436,12 @@ body {
     opacity: unset;
     visibility: hidden;
   }
+
+  .header__logo {
+    transition: opacity 400ms ease-in-out;
+  }
+
+  .header__logo--transparent {
+    opacity: 0.3;
+  }
 }
