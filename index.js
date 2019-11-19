@@ -116,12 +116,11 @@ backButton.onclick = () => {
       askForPriceButton.style.width = `${
         layer2AskForPriceButtonContainer.getBoundingClientRect().width
       }px`;
+      hideLayer(layer2);
     });
     changeParent(mainText, layer1MainTextContainer);
-    hideLayer(layer2);
 
     show(layer1GalleryControls);
-    showLayer(layer1);
     // backgroundImage.classList.remove("background__image--blurred");
 
     currentLayer = 1;

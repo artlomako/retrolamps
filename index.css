@@ -385,7 +385,7 @@ body {
   }
 
   .layer-2 {
-    padding: 1rem 3.5rem 0 3.5rem;
+    padding: 2rem 3.5rem 0 3.5rem;
   }
 
   .layer-2__description-container {
@@ -394,13 +394,14 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
   }
 
   .layer-2__description {
     text-align: center;
     line-height: 1.4rem;
-    margin-bottom: 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .ask-for-price-button {
@@ -443,5 +444,8 @@ body {
 
   .header__logo--transparent {
     opacity: 0.3;
+  }
+
+  .background__image--moved {
   }
 }
