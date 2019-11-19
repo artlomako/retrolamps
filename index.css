@@ -26,6 +26,7 @@ body {
   border-color: #fff;
   border-style: solid;
   outline: none;
+  white-space: nowrap;
 }
 
 .arrow-button {
