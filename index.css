@@ -59,27 +59,39 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  transition: border 400ms;
-  border: 0.5rem solid #fff;
-  overflow: hidden;
-}
+  background-color: #000;
 
-.background--extended-border {
-  border-width: 1rem;
+  overflow: hidden;
 }
 
 .background__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 600ms;
-  transform: scale(1.1);
+  background-image: url("./background.jpg");
+  background-size: cover;
+  background-position: 100%;
+  z-index: 0;
+  transition: filter 400ms;
+  opacity: 0.6;
 }
 
 .background__image--blurred {
   filter: blur(3px);
-  transform: scale(1.4) translateX(-10%);
+}
+
+.background__border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0.5rem 0 #fff inset, -0.5rem 0 #fff inset, 0 0.5rem #fff inset,
+    0 -0.5rem #fff inset;
+  transition: box-shadow 500ms;
+  z-index: 100;
+}
+
+.background__border--extended {
+  box-shadow: 1rem 0 #fff inset, -1rem 0 #fff inset, 0 1rem #fff inset,
+    0 -1rem #fff inset;
 }
 
 .main-container__header {
@@ -155,6 +167,14 @@ body {
 .layer-2__description-container {
   width: 25rem;
   margin-top: 3rem;
+}
+
+.ask-for-price-button {
+  transition: opacity 500ms;
+}
+
+.ask-for-price-button:before {
+  content: "Zapytaj o cenę";
 }
 
 .layer-2__description {
@@ -306,13 +326,8 @@ body {
     max-height: 3.5rem;
   }
 
-  .background {
-    background-color: #000;
-  }
-
   .background__image {
-    opacity: 0.6;
-    object-position: right;
+    background-image: url("./background-mobile.jpg");
   }
 
   .layer-1 {
@@ -408,10 +423,6 @@ body {
     height: 4rem;
     border-width: 1px;
     font-weight: bold;
-  }
-
-  .ask-for-price-button:before {
-    content: "Zapytaj o cenę";
   }
 
   @keyframes ask-for-price-button-transition21 {

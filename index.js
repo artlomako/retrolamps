@@ -28,6 +28,7 @@ let agreementChecked = false;
 const logo = getByClass("header__logo");
 const background = getByClass("background");
 const backgroundImage = getByClass("background__image");
+const backgroundBorder = getByClass("background__border");
 const backButton = getByClass("back-button");
 const backButtonContainer = getByClass("back-button-container");
 const mainText = getByClass("main-text");
@@ -68,10 +69,16 @@ const checkboxCheckmark = getByClass("checkbox__checkmark");
 if (mobile) {
   showMoreButton.onclick = () => {
     currentLayer = 2;
+    gsap.to(".background__image", {
+      duration: 0.4,
+      scale: 1.4,
+      "background-position-x": "40%"
+    });
+    backgroundBorder.classList.add("background__border--extended");
 
     hide(layer1GalleryControls);
+    show(backButtonContainer);
     showLayer(layer2);
-    showMoreButton.classList.add("transition12");
     changeParent(showMoreButton, layer2AskForPriceButtonContainer, () => {
       showMoreButton.classList.add("hidden");
 
@@ -83,9 +90,7 @@ if (mobile) {
     });
     show(layer2Description, backButtonContainer);
     changeParent(mainText, layer2MainTextContainer);
-    background.classList.add("background--extended-border");
     logo.classList.add("header__logo--transparent");
-    // backgroundImage.classList.add("background__image--blurred");
   };
 } else {
   showMoreButton.onclick = () => {
@@ -94,36 +99,63 @@ if (mobile) {
     showLayer(layer2);
     show(layer2Description, askForPriceButton, backButtonContainer);
     changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
-    background.classList.add("background--extended-border");
+    gsap.to(".background__image", {
+      duration: 0.4,
+      scale: 1.4
+    });
+    backgroundBorder.classList.add("background__border--extended");
     backgroundImage.classList.add("background__image--blurred");
   };
 }
 
 backButton.onclick = () => {
   if (currentLayer === 2) {
-    showLayer(layer1);
-    background.classList.remove("background--extended-border");
-    logo.classList.remove("header__logo--transparent");
+    if (mobile) {
+      showLayer(layer1);
+      gsap.to(".background__image", {
+        duration: 0.4,
+        scale: 1
+      });
+      logo.classList.remove("header__logo--transparent");
 
-    hide(layer2Description, backButtonContainer);
-    askForPriceButton.classList.add("transition21");
-    changeParent(askForPriceButton, layer1ShowMoreButtonContainer, () => {
-      hide(askForPriceButton);
-      show(showMoreButton);
+      hide(layer2Description, backButtonContainer);
+      askForPriceButton.classList.add("transition21");
+      changeParent(askForPriceButton, layer1ShowMoreButtonContainer, () => {
+        hide(askForPriceButton);
+        show(showMoreButton);
 
-      layer2AskForPriceButtonContainer.append(askForPriceButton);
-      askForPriceButton.classList.remove("transition21");
-      askForPriceButton.style.width = `${
-        layer2AskForPriceButtonContainer.getBoundingClientRect().width
-      }px`;
-      hideLayer(layer2);
-    });
-    changeParent(mainText, layer1MainTextContainer);
+        layer2AskForPriceButtonContainer.append(askForPriceButton);
+        askForPriceButton.classList.remove("transition21");
+        askForPriceButton.style.width = `${
+          layer2AskForPriceButtonContainer.getBoundingClientRect().width
+        }px`;
+        hideLayer(layer2);
+      });
+      changeParent(mainText, layer1MainTextContainer);
 
-    show(layer1GalleryControls);
-    // backgroundImage.classList.remove("background__image--blurred");
+      show(layer1GalleryControls);
+      backgroundBorder.classList.remove("background__border--extended");
+      backgroundImage.classList.remove("background__image--blurred");
 
-    currentLayer = 1;
+      currentLayer = 1;
+    } else {
+      showLayer(layer1);
+      gsap.to(".background__image", {
+        duration: 0.4,
+        scale: 1
+      });
+
+      hide(layer2Description, backButtonContainer, askForPriceButton);
+      changeParent(mainText, layer1MainTextContainer, () => {
+        hideLayer(layer2);
+      });
+
+      show(layer1GalleryControls, showMoreButton);
+      backgroundBorder.classList.remove("background__border--extended");
+      backgroundImage.classList.remove("background__image--blurred");
+
+      currentLayer = 1;
+    }
   }
   if (currentLayer === 3) {
     showLayer(layer2);
