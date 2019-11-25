@@ -16,7 +16,7 @@
     translateX: 0,
     translateY: 0,
     width: newParent.getBoundingClientRect().width,
-    duration: 400,
+    duration: 500,
     easing: "easeInOutQuad",
     complete: afterTransitionCallback
   });

@@ -23,7 +23,7 @@
       <div class="main-container__body">
         <div class="layer layer-1">
           <div class="layer-1__main-text-container">
-            <div class="main-text hideable">
+            <div class="main-text">
               <div class="main-text__first-line">
                 Lampa stylizowana na projekcie
               </div>
@@ -33,21 +33,22 @@
             </div>
           </div>
           <div class="layer-1__show-more-button-container">
-            <button class="button layer-1__show-more-button hideable">
-              <span>Zobacz więcej</span>
+            <button class="button layer-1__show-more-button">
+              <div class="content"></div>
             </button>
           </div>
         </div>
         <div class="layer layer-2">
           <div class="layer-2__main-text-container"></div>
-          <div class="layer-2__description-container">
-            <div class="layer-2__description hideable hidden">
+          <div class="layer-2__description-container hidden">
+            <div class="layer-2__description">
               Wykonana z drewna bukowego z bakelitową oprawką E27. Regulowany
               klosz za pomocą listewek, dzięki czemu można decydować o natężeniu
               światła w pomieszczeniu.
             </div>
             <div class="layer-2__ask-for-price-button-container">
-              <button class="button ask-for-price-button hidden">
+              <button class="button ask-for-price-button">
+                <div class="content"></div>
               </button>
             </div>
           </div>
@@ -55,10 +56,10 @@
         <div class="layer layer-3">
           <div class="layer-3__main-text-container"></div>
           <div class="layer-3__container">
-            <div class="layer-3__title hideable hidden">
+            <div class="layer-3__title hidden">
               Lampa stylizowana na projekcie Hans Agne Jakobsson z lat 60.
             </div>
-            <div class="layer-3__description hideable hidden">
+            <div class="layer-3__description hidden">
               Wykonana z drewna bukowego z bakelitową oprawką E27. Regulowany
               klosz za pomocą listewek, dzięki czemu można decydować o natężeniu
               światła w pomieszczeniu.
@@ -87,10 +88,10 @@
         </div>
       </div>
       <div class="main-container__footer">
-        <div class="back-button-container hideable hidden">
+        <div class="back-button-container hidden">
           <button class="back-button button arrow-button"></button>
         </div>
-        <div class="layer-1__gallery-controls hideable">
+        <div class="layer-1__gallery-controls">
           <button class="button arrow-button"></button>
           <button class="button arrow-button arrow-button--right"></button>
         </div>
@@ -98,8 +99,9 @@
     </div>
     <script src="anime.min.js"></script>
     <script src="gsap.min.js"></script>
-    <script src="EasePack.min.js"></script>
     <script src="changeParent.js"></script>
+    <script src="moveButton.js"></script>
+    <script src="moveElement.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

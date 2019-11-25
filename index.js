@@ -1,218 +1,244 @@
-const getByClass = className => document.getElementsByClassName(className)[0];
+window.onload = function() {
+  var vw = Math.max(
+    document.documentElement.clientWidth,
+    window.innerWidth || 0
+  );
 
-const hide = (...elements) =>
-  elements.forEach(element => element.classList.add("hidden"));
+  const getByClass = className => document.getElementsByClassName(className)[0];
 
-const show = (...elements) =>
-  elements.forEach(element => element.classList.remove("hidden"));
+  const hide = (...elements) =>
+    elements.forEach(element => element.classList.add("hidden"));
 
-const getContainer = (layerNumber, className) =>
-  getByClass(`layer-${layerNumber}__${className}-container`);
+  const show = (...elements) =>
+    elements.forEach(element => element.classList.remove("hidden"));
 
-const hideLayer = layer => {
-  layer.style.visibility = "hidden";
-  layer.style["z-index"] = 0;
-};
+  const getContainer = (layerNumber, className) =>
+    getByClass(`layer-${layerNumber}__${className}-container`);
 
-const showLayer = layer => {
-  layer.style.visibility = "visible";
-  layer.style["z-index"] = 100;
-};
-
-// state
-const mobile = window.outerWidth <= 425;
-let currentLayer = 1;
-let agreementChecked = false;
-
-// elements
-const logo = getByClass("header__logo");
-const background = getByClass("background");
-const backgroundImage = getByClass("background__image");
-const backgroundBorder = getByClass("background__border");
-const backButton = getByClass("back-button");
-const backButtonContainer = getByClass("back-button-container");
-const mainText = getByClass("main-text");
-
-const layer1 = getByClass("layer-1");
-const layer1MainTextContainer = getContainer(1, "main-text");
-const layer1ShowMoreButtonContainer = getContainer(1, "show-more-button");
-const layer1GalleryControls = getByClass("layer-1__gallery-controls");
-
-const showMoreButton = getByClass("layer-1__show-more-button");
-
-const layer2 = getByClass("layer-2");
-const layer2MainTextContainer = getContainer(2, "main-text");
-const layer2Description = getByClass("layer-2__description");
-const layer2AskForPriceButtonContainer = getContainer(
-  2,
-  "ask-for-price-button"
-);
-
-const layer3 = getByClass("layer-3");
-const layer3MainTextContainer = getContainer(3, "main-text");
-const askForPriceButton = getByClass("ask-for-price-button");
-const layer3AskForPriceButtonContainer = getContainer(
-  3,
-  "ask-for-price-button"
-);
-const layer3Description = getByClass("layer-3__description");
-const layer3Title = getByClass("layer-3__title");
-
-const contactFormAgreementCheckbox = getByClass(
-  "contact-form__agreement-checkbox"
-);
-
-const contactForm = getByClass("contact-form");
-
-const checkboxCheckmark = getByClass("checkbox__checkmark");
-
-if (mobile) {
-  showMoreButton.onclick = () => {
-    currentLayer = 2;
-    gsap.to(".background__image", {
-      duration: 0.4,
-      scale: 1.4,
-      "background-position-x": "40%"
-    });
-    backgroundBorder.classList.add("background__border--extended");
-
-    hide(layer1GalleryControls);
-    show(backButtonContainer);
-    showLayer(layer2);
-    changeParent(showMoreButton, layer2AskForPriceButtonContainer, () => {
-      showMoreButton.classList.add("hidden");
-
-      show(askForPriceButton);
-
-      layer1ShowMoreButtonContainer.append(showMoreButton);
-      showMoreButton.classList.remove("transition12");
-      showMoreButton.style.width = "";
-    });
-    show(layer2Description, backButtonContainer);
-    changeParent(mainText, layer2MainTextContainer);
-    logo.classList.add("header__logo--transparent");
+  const hideLayer = layer => {
+    layer.style.visibility = "hidden";
+    layer.style["z-index"] = 0;
   };
-} else {
-  showMoreButton.onclick = () => {
-    currentLayer = 2;
-    hide(showMoreButton, layer1GalleryControls);
-    showLayer(layer2);
-    show(layer2Description, askForPriceButton, backButtonContainer);
-    changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer1));
-    gsap.to(".background__image", {
-      duration: 0.4,
-      scale: 1.4
-    });
-    backgroundBorder.classList.add("background__border--extended");
-    backgroundImage.classList.add("background__image--blurred");
+
+  const showLayer = layer => {
+    layer.style.visibility = "visible";
+    layer.style["z-index"] = 100;
   };
-}
 
-backButton.onclick = () => {
-  if (currentLayer === 2) {
-    if (mobile) {
-      showLayer(layer1);
-      gsap.to(".background__image", {
-        duration: 0.4,
-        scale: 1
-      });
-      logo.classList.remove("header__logo--transparent");
+  // state
+  const mobile = vw <= 425;
+  let currentLayer = 1;
+  let agreementChecked = false;
 
-      hide(layer2Description, backButtonContainer);
-      askForPriceButton.classList.add("transition21");
-      changeParent(askForPriceButton, layer1ShowMoreButtonContainer, () => {
-        hide(askForPriceButton);
-        show(showMoreButton);
+  // elements
+  const logo = getByClass("header__logo");
+  const backgroundImage = getByClass("background__image");
+  const backgroundBorder = getByClass("background__border");
+  const backButton = getByClass("back-button");
+  const backButtonContainer = getByClass("back-button-container");
+  const mainText = getByClass("main-text");
 
-        layer2AskForPriceButtonContainer.append(askForPriceButton);
-        askForPriceButton.classList.remove("transition21");
-        askForPriceButton.style.width = `${
-          layer2AskForPriceButtonContainer.getBoundingClientRect().width
-        }px`;
-        hideLayer(layer2);
-      });
-      changeParent(mainText, layer1MainTextContainer);
+  const layer1 = getByClass("layer-1");
+  const layer1MainTextContainer = getContainer(1, "main-text");
+  const layer1ShowMoreButtonContainer = getContainer(1, "show-more-button");
+  const layer1GalleryControls = getByClass("layer-1__gallery-controls");
 
-      show(layer1GalleryControls);
-      backgroundBorder.classList.remove("background__border--extended");
-      backgroundImage.classList.remove("background__image--blurred");
+  const showMoreButton = getByClass("layer-1__show-more-button");
 
-      currentLayer = 1;
-    } else {
-      showLayer(layer1);
-      gsap.to(".background__image", {
-        duration: 0.4,
-        scale: 1
-      });
+  const layer2 = getByClass("layer-2");
+  const layer2MainTextContainer = getContainer(2, "main-text");
+  const layer2Description = getByClass("layer-2__description");
+  const layer2DescriptionContainer = getContainer(2, "description");
+  const layer2AskForPriceButtonContainer = getContainer(
+    2,
+    "ask-for-price-button"
+  );
 
-      hide(layer2Description, backButtonContainer, askForPriceButton);
-      changeParent(mainText, layer1MainTextContainer, () => {
-        hideLayer(layer2);
-      });
+  const layer3 = getByClass("layer-3");
+  const layer3MainTextContainer = getContainer(3, "main-text");
+  const askForPriceButton = getByClass("ask-for-price-button");
+  const layer3AskForPriceButtonContainer = getContainer(
+    3,
+    "ask-for-price-button"
+  );
+  const layer3Description = getByClass("layer-3__description");
+  const layer3Title = getByClass("layer-3__title");
 
-      show(layer1GalleryControls, showMoreButton);
-      backgroundBorder.classList.remove("background__border--extended");
-      backgroundImage.classList.remove("background__image--blurred");
+  const contactFormAgreementCheckbox = getByClass(
+    "contact-form__agreement-checkbox"
+  );
 
-      currentLayer = 1;
-    }
-  }
-  if (currentLayer === 3) {
-    showLayer(layer2);
-    hide(layer3Description, layer3Title, contactForm);
-    show(layer2Description);
-    changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer3));
-    changeParent(askForPriceButton, layer2AskForPriceButtonContainer);
-    currentLayer = 2;
-  }
-};
+  const contactForm = getByClass("contact-form");
 
-askForPriceButton.onclick = () => {
-  currentLayer = 3;
-  showLayer(layer3);
-  hide(layer2Description);
-  show(layer3Description, layer3Title, contactForm);
-  changeParent(mainText, layer3MainTextContainer, () => {
-    hideLayer(layer2);
-  });
-  changeParent(askForPriceButton, layer3AskForPriceButtonContainer, () => {});
-};
-
-contactFormAgreementCheckbox.onclick = () => {
-  const className = "checkbox__checkmark--checked";
-  if (agreementChecked) {
-    checkboxCheckmark.classList.remove(className);
-    agreementChecked = false;
+  const checkboxCheckmark = getByClass("checkbox__checkmark");
+  if (mobile) {
+    showMoreButton.onclick = () => {
+      currentLayer = 2;
+      showLayer(layer2);
+      gsap
+        .timeline()
+        .to(backgroundBorder, 0.5, { borderWidth: "1rem" })
+        .to(layer1GalleryControls, 0.5, { opacity: 0 }, "<")
+        .to(
+          backgroundImage,
+          0.5,
+          {
+            backgroundPositionX: "40%",
+            scale: 1.4
+          },
+          "<"
+        )
+        .to(backButtonContainer, 0.5, { opacity: 1 }, "<")
+        .to(logo, 0.5, { opacity: 0.5 }, "<")
+        .add(
+          moveButton(
+            showMoreButton,
+            askForPriceButton,
+            "Zapytaj o cenę",
+            () => {
+              hideLayer(layer1);
+              show(askForPriceButton, backButtonContainer);
+              hide(showMoreButton, layer1GalleryControls);
+            }
+          ),
+          "<"
+        )
+        .add(
+          moveElement(mainText, layer2MainTextContainer, () => {}),
+          "<"
+        )
+        .to(layer2Description, 0.5, { opacity: 1 }, "<");
+    };
   } else {
-    checkboxCheckmark.classList.add(className);
-    agreementChecked = true;
+    showMoreButton.onclick = () => {
+      currentLayer = 2;
+      showLayer(layer2);
+      gsap
+        .timeline()
+        .to(backgroundBorder, 0.5, { borderWidth: "1rem" })
+        .fromTo(
+          backgroundImage,
+          0.5,
+          { filter: "blur(0)" },
+          { filter: "blur(3px)", scale: 1.2 },
+          "<"
+        )
+        .to(layer1GalleryControls, 0.5, { opacity: 0 }, "<")
+        .to(backButtonContainer, 0.5, { opacity: 1 }, "<")
+        .to(showMoreButton, 0.5, { opacity: 0 }, "<")
+        .add(
+          moveElement(mainText, layer2MainTextContainer, () => {}),
+          "<"
+        )
+        .to(layer2DescriptionContainer, 0.5, { opacity: 1 }, "<")
+        .call(() => hideLayer(layer1));
+    };
   }
-};
 
-function adjustContainers() {
-  const setMinHeight = (element, sampleElement) =>
-    (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
+  backButton.onclick = () => {
+    if (currentLayer === 2) {
+      if (mobile) {
+        showLayer(layer1);
+        gsap
+          .timeline()
+          .to(backgroundImage, 0.5, {
+            scale: 1
+          })
+          .to(backgroundBorder, 0.5, { borderWidth: "0.5rem" }, "<")
+          .to(logo, 0.5, { opacity: 1 }, "<")
+          .to(layer2Description, 0.5, { opacity: 0 }, "<")
+          .to(layer1GalleryControls, 0.5, { opacity: 1 }, "<")
+          .to(backButtonContainer, 0.5, { opacity: 0 }, "<")
+          .add(
+            () =>
+              moveButton(askForPriceButton, showMoreButton, "Więcej", () => {
+                hideLayer(layer2);
+                show(showMoreButton, layer1GalleryControls);
+                hide(askForPriceButton, backButtonContainer);
+              }),
+            "<"
+          )
+          .add(
+            moveElement(mainText, layer1MainTextContainer, () => {}),
+            "<"
+          );
 
-  const setMinWidth = (element, sampleElement) => {
-    element.style["min-width"] = `${sampleElement.offsetWidth}px`;
-    element.style["max-width"] = `${sampleElement.offsetWidth}px`;
+        currentLayer = 1;
+      } else {
+        showLayer(layer1);
+        gsap
+          .timeline()
+          .to(backButtonContainer, 0.5, { opacity: 0 })
+          .to(layer1GalleryControls, 0.5, { opacity: 1 }, "<")
+          .to(layer2DescriptionContainer, 0.5, { opacity: 0 }, "<")
+          .add(
+            moveElement(mainText, layer1MainTextContainer, () => {}),
+            "<"
+          )
+          .to(showMoreButton, 0.5, { opacity: 1 }, "<")
+          .to(backgroundBorder, 0.5, { borderWidth: "0.5rem" }, "<")
+          .to(backgroundImage, 0.5, { filter: "blur(0px)", scale: 1 }, "<")
+          .call(() => hideLayer(layer2));
+
+        currentLayer = 1;
+      }
+    }
+    if (currentLayer === 3) {
+      showLayer(layer2);
+      hide(layer3Description, layer3Title, contactForm);
+      show(layer2Description);
+      changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer3));
+      changeParent(askForPriceButton, layer2AskForPriceButtonContainer);
+      currentLayer = 2;
+    }
   };
 
-  setMinHeight(layer1MainTextContainer, mainText);
-  setMinHeight(layer1ShowMoreButtonContainer, showMoreButton);
+  askForPriceButton.onclick = () => {
+    currentLayer = 3;
+    showLayer(layer3);
+    hide(layer2Description);
+    show(layer3Description, layer3Title, contactForm);
+    changeParent(mainText, layer3MainTextContainer, () => {
+      hideLayer(layer2);
+    });
+    changeParent(askForPriceButton, layer3AskForPriceButtonContainer, () => {});
+  };
 
-  setMinHeight(layer2MainTextContainer, mainText);
-  setMinHeight(layer3MainTextContainer, mainText);
+  contactFormAgreementCheckbox.onclick = () => {
+    const className = "checkbox__checkmark--checked";
+    if (agreementChecked) {
+      checkboxCheckmark.classList.remove(className);
+      agreementChecked = false;
+    } else {
+      checkboxCheckmark.classList.add(className);
+      agreementChecked = true;
+    }
+  };
 
-  askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
-  layer3MainTextContainer.style.left = `${
-    layer2MainTextContainer.getBoundingClientRect().x
-  }px`;
-  layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
-    .y + mainText.offsetHeight}px`;
+  function adjustContainers() {
+    const setMinHeight = (element, sampleElement) =>
+      (element.style["min-height"] = `${sampleElement.offsetHeight}px`);
 
-  setMinHeight(layer2AskForPriceButtonContainer, askForPriceButton);
-  setMinWidth(layer1ShowMoreButtonContainer, showMoreButton);
-}
+    const setMinWidth = (element, sampleElement) => {
+      element.style["min-width"] = `${sampleElement.offsetWidth}px`;
+      // element.style["max-width"] = `${sampleElement.offsetWidth}px`;
+    };
 
-window.onload = adjustContainers;
+    setMinHeight(layer1MainTextContainer, mainText);
+    setMinHeight(layer1ShowMoreButtonContainer, showMoreButton);
+
+    setMinHeight(layer2MainTextContainer, mainText);
+    setMinHeight(layer3MainTextContainer, mainText);
+
+    askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
+    layer3MainTextContainer.style.left = `${
+      layer2MainTextContainer.getBoundingClientRect().x
+    }px`;
+    layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
+      .y + mainText.offsetHeight}px`;
+
+    setMinHeight(layer2AskForPriceButtonContainer, askForPriceButton);
+    setMinWidth(layer1ShowMoreButtonContainer, showMoreButton);
+  }
+  adjustContainers();
+};
