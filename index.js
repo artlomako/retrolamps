@@ -48,7 +48,6 @@ window.onload = function() {
   const layer2 = getByClass("layer-2");
   const layer2MainTextContainer = getContainer(2, "main-text");
   const layer2Description = getByClass("layer-2__description");
-  const layer2DescriptionContainer = getContainer(2, "description");
   const layer2AskForPriceButtonContainer = getContainer(
     2,
     "ask-for-price-button"
@@ -90,14 +89,14 @@ window.onload = function() {
         )
         .to(backButtonContainer, 0.5, { opacity: 1 }, "<")
         .to(logo, 0.5, { opacity: 0.5 }, "<")
+        .to(layer2Description, { opacity: 1 }, "<")
         .add(
           moveButton(
             showMoreButton,
             askForPriceButton,
             "Zapytaj o cenę",
             () => {
-              hideLayer(layer1);
-              show(askForPriceButton, backButtonContainer);
+              show(askForPriceButton, askForPriceButton, backButtonContainer);
               hide(showMoreButton, layer1GalleryControls);
             }
           ),
@@ -107,7 +106,10 @@ window.onload = function() {
           moveElement(mainText, layer2MainTextContainer, () => {}),
           "<"
         )
-        .to(layer2Description, 0.5, { opacity: 1 }, "<");
+        .to(layer2Description, 0.5, { opacity: 1 }, "<")
+        .call(() => {
+          hideLayer(layer1);
+        });
     };
   } else {
     showMoreButton.onclick = () => {
@@ -130,7 +132,8 @@ window.onload = function() {
           moveElement(mainText, layer2MainTextContainer, () => {}),
           "<"
         )
-        .to(layer2DescriptionContainer, 0.5, { opacity: 1 }, "<")
+        .to(layer2Description, 0.5, { opacity: 1 }, "<")
+        .to(askForPriceButton, 0.5, { opacity: 1 }, "<")
         .call(() => hideLayer(layer1));
     };
   }
@@ -170,7 +173,8 @@ window.onload = function() {
           .timeline()
           .to(backButtonContainer, 0.5, { opacity: 0 })
           .to(layer1GalleryControls, 0.5, { opacity: 1 }, "<")
-          .to(layer2DescriptionContainer, 0.5, { opacity: 0 }, "<")
+          .to(layer2Description, 0.5, { opacity: 0 }, "<")
+          .to(askForPriceButton, 0.5, { opacity: 0 }, "<")
           .add(
             moveElement(mainText, layer1MainTextContainer, () => {}),
             "<"
@@ -184,24 +188,56 @@ window.onload = function() {
       }
     }
     if (currentLayer === 3) {
-      showLayer(layer2);
-      hide(layer3Description, layer3Title, contactForm);
-      show(layer2Description);
-      changeParent(mainText, layer2MainTextContainer, () => hideLayer(layer3));
-      changeParent(askForPriceButton, layer2AskForPriceButtonContainer);
-      currentLayer = 2;
+      if (mobile) {
+      } else {
+        gsap
+          .timeline()
+          .call(() => {
+            showLayer(layer2);
+            currentLayer = 2;
+          })
+          .to(layer3Title, 0.5, { opacity: 0 })
+          .to(layer3Description, 0.5, { opacity: 0 }, "<")
+          .to(".contact-form", 0.5, { opacity: 0 }, "<")
+          .to(layer2Description, 0.5, { opacity: 1 }, "<")
+          .to(askForPriceButton, 0.5, { opacity: 1 }, "<")
+          .to(mainText, 0.5, { opacity: 1 }, "<")
+          .add(
+            moveElement(
+              askForPriceButton,
+              layer2AskForPriceButtonContainer,
+              () => {}
+            ),
+            "<"
+          )
+          .call(() => hideLayer(layer3));
+      }
     }
   };
 
   askForPriceButton.onclick = () => {
-    currentLayer = 3;
-    showLayer(layer3);
-    hide(layer2Description);
-    show(layer3Description, layer3Title, contactForm);
-    changeParent(mainText, layer3MainTextContainer, () => {
-      hideLayer(layer2);
-    });
-    changeParent(askForPriceButton, layer3AskForPriceButtonContainer, () => {});
+    if (mobile) {
+    } else {
+      gsap
+        .timeline()
+        .call(() => {
+          showLayer(layer3);
+          currentLayer = 3;
+        })
+        .to(mainText, 0.5, { opacity: 0 })
+        .to(layer2Description, 0.5, { opacity: 0 }, "<")
+        .to(layer3Title, 0.5, { opacity: 1 }, "<")
+        .to(layer3Description, 0.5, { opacity: 1 }, "<")
+        .to(".contact-form", 0.5, { opacity: 1 }, "<")
+        .add(
+          moveElement(
+            askForPriceButton,
+            layer3AskForPriceButtonContainer,
+            () => {}
+          ),
+          "<"
+        );
+    }
   };
 
   contactFormAgreementCheckbox.onclick = () => {
