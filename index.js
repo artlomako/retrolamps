@@ -67,8 +67,6 @@ window.onload = function() {
     "contact-form__agreement-checkbox"
   );
 
-  const contactForm = getByClass("contact-form");
-
   const checkboxCheckmark = getByClass("checkbox__checkmark");
   if (mobile) {
     showMoreButton.onclick = () => {
@@ -76,20 +74,46 @@ window.onload = function() {
       showLayer(layer2);
       gsap
         .timeline()
-        .to(backgroundBorder, 0.5, { borderWidth: "1rem" })
-        .to(layer1GalleryControls, 0.5, { opacity: 0 }, "<")
+        .to(backgroundBorder, 0.5, {
+          force3D: false,
+          ease: Power1.easeInOut,
+          borderWidth: "1rem"
+        })
+        .to(
+          layer1GalleryControls,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+          "<"
+        )
         .to(
           backgroundImage,
           0.5,
           {
+            force3D: false,
+            ease: Power1.easeInOut,
             backgroundPositionX: "40%",
             scale: 1.4
           },
           "<"
         )
-        .to(backButtonContainer, 0.5, { opacity: 1 }, "<")
-        .to(logo, 0.5, { opacity: 0.5 }, "<")
-        .to(layer2Description, { opacity: 1 }, "<")
+        .to(
+          backButtonContainer,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .to(
+          logo,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0.5 },
+          "<"
+        )
+        .to(
+          layer2Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
         .add(
           moveButton(
             showMoreButton,
@@ -106,7 +130,12 @@ window.onload = function() {
           moveElement(mainText, layer2MainTextContainer, () => {}),
           "<"
         )
-        .to(layer2Description, 0.5, { opacity: 1 }, "<")
+        .to(
+          layer2Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
         .call(() => {
           hideLayer(layer1);
         });
@@ -117,23 +146,56 @@ window.onload = function() {
       showLayer(layer2);
       gsap
         .timeline()
-        .to(backgroundBorder, 0.5, { borderWidth: "1rem" })
+        .to(backgroundBorder, 0.5, {
+          force3D: false,
+          ease: Power1.easeInOut,
+          borderWidth: "1rem"
+        })
         .fromTo(
           backgroundImage,
           0.5,
-          { filter: "blur(0)" },
-          { filter: "blur(3px)", scale: 1.2 },
+          { force3D: false, ease: Power1.easeInOut },
+          {
+            force3D: false,
+            ease: "expoScale(1, 1.2, 'power1.inOut')",
+            scale: 1.2
+          },
           "<"
         )
-        .to(layer1GalleryControls, 0.5, { opacity: 0 }, "<")
-        .to(backButtonContainer, 0.5, { opacity: 1 }, "<")
-        .to(showMoreButton, 0.5, { opacity: 0 }, "<")
+        .to(
+          layer1GalleryControls,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+          "<"
+        )
+        .to(
+          backButtonContainer,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .to(
+          showMoreButton,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+          "<"
+        )
         .add(
           moveElement(mainText, layer2MainTextContainer, () => {}),
           "<"
         )
-        .to(layer2Description, 0.5, { opacity: 1 }, "<")
-        .to(askForPriceButton, 0.5, { opacity: 1 }, "<")
+        .to(
+          layer2Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .to(
+          askForPriceButton,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
         .call(() => hideLayer(layer1));
     };
   }
@@ -145,13 +207,41 @@ window.onload = function() {
         gsap
           .timeline()
           .to(backgroundImage, 0.5, {
-            scale: 1
+            force3D: false,
+            ease: "expoScale(1.2, 1, 'power1.inOut')",
+            scale: 1,
+            backgroundPositionX: "100%"
           })
-          .to(backgroundBorder, 0.5, { borderWidth: "0.5rem" }, "<")
-          .to(logo, 0.5, { opacity: 1 }, "<")
-          .to(layer2Description, 0.5, { opacity: 0 }, "<")
-          .to(layer1GalleryControls, 0.5, { opacity: 1 }, "<")
-          .to(backButtonContainer, 0.5, { opacity: 0 }, "<")
+          .to(
+            backgroundBorder,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, borderWidth: "0.5rem" },
+            "<"
+          )
+          .to(
+            logo,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            layer2Description,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
+          .to(
+            layer1GalleryControls,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            backButtonContainer,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
           .add(
             () =>
               moveButton(askForPriceButton, showMoreButton, "Więcej", () => {
@@ -171,17 +261,55 @@ window.onload = function() {
         showLayer(layer1);
         gsap
           .timeline()
-          .to(backButtonContainer, 0.5, { opacity: 0 })
-          .to(layer1GalleryControls, 0.5, { opacity: 1 }, "<")
-          .to(layer2Description, 0.5, { opacity: 0 }, "<")
-          .to(askForPriceButton, 0.5, { opacity: 0 }, "<")
+          .to(backButtonContainer, 0.5, {
+            force3D: false,
+            ease: Power1.easeInOut,
+            opacity: 0
+          })
+          .to(
+            layer1GalleryControls,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            layer2Description,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
+          .to(
+            askForPriceButton,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
           .add(
             moveElement(mainText, layer1MainTextContainer, () => {}),
             "<"
           )
-          .to(showMoreButton, 0.5, { opacity: 1 }, "<")
-          .to(backgroundBorder, 0.5, { borderWidth: "0.5rem" }, "<")
-          .to(backgroundImage, 0.5, { filter: "blur(0px)", scale: 1 }, "<")
+          .to(
+            showMoreButton,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            backgroundBorder,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, borderWidth: "0.5rem" },
+            "<"
+          )
+          .to(
+            backgroundImage,
+            0.5,
+            {
+              force3D: false,
+              ease: "expoScale(1.2, 1, 'power1.inOut')",
+              scale: 1
+            },
+            "<"
+          )
           .call(() => hideLayer(layer2));
 
         currentLayer = 1;
@@ -196,12 +324,41 @@ window.onload = function() {
             showLayer(layer2);
             currentLayer = 2;
           })
-          .to(layer3Title, 0.5, { opacity: 0 })
-          .to(layer3Description, 0.5, { opacity: 0 }, "<")
-          .to(".contact-form", 0.5, { opacity: 0 }, "<")
-          .to(layer2Description, 0.5, { opacity: 1 }, "<")
-          .to(askForPriceButton, 0.5, { opacity: 1 }, "<")
-          .to(mainText, 0.5, { opacity: 1 }, "<")
+          .to(layer3Title, 0.5, {
+            force3D: false,
+            ease: Power1.easeInOut,
+            opacity: 0
+          })
+          .to(
+            layer3Description,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
+          .to(
+            ".contact-form",
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+            "<"
+          )
+          .to(
+            layer2Description,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            askForPriceButton,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
+          .to(
+            mainText,
+            0.5,
+            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+            "<"
+          )
           .add(
             moveElement(
               askForPriceButton,
@@ -224,11 +381,35 @@ window.onload = function() {
           showLayer(layer3);
           currentLayer = 3;
         })
-        .to(mainText, 0.5, { opacity: 0 })
-        .to(layer2Description, 0.5, { opacity: 0 }, "<")
-        .to(layer3Title, 0.5, { opacity: 1 }, "<")
-        .to(layer3Description, 0.5, { opacity: 1 }, "<")
-        .to(".contact-form", 0.5, { opacity: 1 }, "<")
+        .to(mainText, 0.5, {
+          force3D: false,
+          ease: Power1.easeInOut,
+          opacity: 0
+        })
+        .to(
+          layer2Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+          "<"
+        )
+        .to(
+          layer3Title,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .to(
+          layer3Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .to(
+          ".contact-form",
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
         .add(
           moveElement(
             askForPriceButton,
@@ -275,6 +456,7 @@ window.onload = function() {
 
     setMinHeight(layer2AskForPriceButtonContainer, askForPriceButton);
     setMinWidth(layer1ShowMoreButtonContainer, showMoreButton);
+    setMinWidth(layer1MainTextContainer, mainText);
   }
   adjustContainers();
 };

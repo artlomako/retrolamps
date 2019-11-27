@@ -22,9 +22,24 @@ function moveButton(
       top: "50%"
     })
     .call(() => sourceButton.appendChild(fakeContent))
-    .to(sourceButton, 0.5, { y: targetX, width: targetW })
-    .to(fakeContent, 0.5, { opacity: 1 }, "<")
-    .to(realContent, 0.5, { opacity: 0 }, "<")
+    .to(sourceButton, 0.5, {
+      force3D: false,
+      ease: Power1.easeInOut,
+      y: targetX,
+      width: targetW
+    })
+    .to(
+      fakeContent,
+      0.5,
+      { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+      "<"
+    )
+    .to(
+      realContent,
+      0.5,
+      { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+      "<"
+    )
     .call(endCallback)
     .set(sourceButton, {
       y: "",
