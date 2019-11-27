@@ -338,7 +338,6 @@ body {
 
   .layer-1__show-more-button {
     border-width: 1px;
-    height: 4rem;
     padding: 0 2.5rem;
     position: relative;
   }
@@ -385,7 +384,6 @@ body {
   }
 
   .ask-for-price-button {
-    height: 4rem;
     border-width: 1px;
     font-weight: 600;
   }
@@ -397,5 +395,24 @@ body {
   .layer-2__ask-for-price-button-container {
     display: flex;
     justify-content: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .main-text {
+    font-size: 0.8rem;
+  }
+
+  .header__logo {
+    max-height: 3rem;
+  }
+
+  .layer-1 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .layer-2 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
