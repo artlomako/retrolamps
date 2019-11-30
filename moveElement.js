@@ -1,9 +1,12 @@
 function moveElement(element, targetContainer) {
-  const sourceX = element.offsetLeft;
-  const targetX = targetContainer.offsetLeft;
+  const elementRect = element.getBoundingClientRect();
+  const containerRect = targetContainer.getBoundingClientRect();
 
-  const sourceY = element.offsetTop;
-  const targetY = targetContainer.offsetTop;
+  const sourceX = elementRect.left;
+  const targetX = containerRect.left;
+  const sourceY = elementRect.top;
+  const targetY = containerRect.top;
+  
   return gsap
     .timeline()
     .call(() => {

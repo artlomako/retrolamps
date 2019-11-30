@@ -178,7 +178,7 @@ body {
   margin-bottom: 4rem;
 }
 
-.layer-2__description-break{
+.layer-2__description-break {
   display: none;
 }
 
@@ -218,6 +218,14 @@ body {
   font-weight: 200;
   letter-spacing: 3px;
   margin-bottom: 2rem;
+}
+
+.send-inquiry-button {
+  width: 100%;
+}
+
+.send-inquiry-button > .content::before {
+  content: "Wyślij zapytanie";
 }
 
 .main-container__footer {
@@ -310,6 +318,10 @@ body {
 }
 
 @media (max-width: 425px) {
+  .button {
+    border-width: 1px;
+  }
+
   .main-container__header {
     display: flex;
     justify-content: center;
@@ -341,7 +353,6 @@ body {
   }
 
   .layer-1__show-more-button {
-    border-width: 1px;
     padding: 0 2.5rem;
     position: relative;
   }
@@ -391,12 +402,11 @@ body {
     justify-content: center;
   }
 
-  .layer-2__description-break{
+  .layer-2__description-break {
     display: block;
   }
 
   .ask-for-price-button {
-    border-width: 1px;
     font-weight: 600;
   }
 
@@ -406,8 +416,26 @@ body {
 
   .layer-2__ask-for-price-button-container {
     display: flex;
+    /* justify-content: center; */
+  }
+
+  .layer-3 {
+    padding: 2rem 3.5rem 3rem 3.5rem;
+  }
+
+  .layer-3__description {
+    display: none;
+  }
+
+  .contact-form {
+    flex-grow: 1;
     justify-content: center;
   }
+
+  .ask-for-price-button {
+    width: 100%;
+  }
+
 }
 
 @media (max-width: 375px) {

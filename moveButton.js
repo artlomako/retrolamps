@@ -8,8 +8,15 @@ function moveButton(
   const realContent = sourceButton.querySelector(".content");
   fakeContent.innerHTML = targetButtonContent;
 
-  const targetX = targetButton.offsetTop - sourceButton.offsetTop;
-  const targetW = targetButton.offsetWidth;
+  const sourceRect = sourceButton.getBoundingClientRect();
+  const targetRect = targetButton.getBoundingClientRect();
+  const sourceW = sourceRect.width;
+  const targetW = targetRect.width;
+  let targetX = targetRect.x - sourceRect.x;
+  if(sourceRect.left > targetRect.left ){
+    targetX-=((sourceW - targetW) / 2)
+  }
+  const targetY = targetRect.top - sourceRect.top;
 
   return gsap
     .timeline()
@@ -25,7 +32,8 @@ function moveButton(
     .to(sourceButton, 0.5, {
       force3D: false,
       ease: Power1.easeInOut,
-      y: targetX,
+      x: targetX,
+      y: targetY,
       width: targetW
     })
     .to(
@@ -42,6 +50,7 @@ function moveButton(
     )
     .call(endCallback)
     .set(sourceButton, {
+      x: "",
       y: "",
       width: ""
     })

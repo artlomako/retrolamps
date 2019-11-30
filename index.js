@@ -56,10 +56,11 @@ window.onload = function() {
   const layer3 = getByClass("layer-3");
   const layer3MainTextContainer = getContainer(3, "main-text");
   const askForPriceButton = getByClass("ask-for-price-button");
-  const layer3AskForPriceButtonContainer = getContainer(
+  const layer3SendInquiryButtonContainer = getContainer(
     3,
-    "ask-for-price-button"
+    "send-inquiry-button"
   );
+  const sendInquiryButton = getByClass("send-inquiry-button");
   const layer3Description = getByClass("layer-3__description");
   const layer3Title = getByClass("layer-3__title");
 
@@ -120,7 +121,7 @@ window.onload = function() {
             askForPriceButton,
             "Zapytaj o cenę",
             () => {
-              show(askForPriceButton, askForPriceButton, backButtonContainer);
+              show(askForPriceButton, backButtonContainer);
               hide(showMoreButton, layer1GalleryControls);
             }
           ),
@@ -317,6 +318,52 @@ window.onload = function() {
     }
     if (currentLayer === 3) {
       if (mobile) {
+        gsap
+          .timeline()
+          .call(() => showLayer(layer2))
+          .to(logo, 0.5, {
+            force3D: false,
+            ease: Power1.easeInOut,
+            opacity: 0.5
+          })
+          .add(
+            moveButton(
+              sendInquiryButton,
+              layer2AskForPriceButtonContainer,
+              "Zapytaj o cenę",
+              () => {
+                show(askForPriceButton);
+                hide(sendInquiryButton);
+              }
+            ),
+            "<"
+          )
+          .add(moveElement(mainText, layer2MainTextContainer), "<")
+          .to(
+            ".contact-form",
+            0.5,
+            {
+              force3D: false,
+              ease: Power1.easeInOut,
+              opacity: 0
+            },
+            "<"
+          )
+          .to(
+            layer2Description,
+            0.5,
+            {
+              force3D: false,
+              ease: Power1.easeInOut,
+              opacity: 1
+            },
+            "<"
+          )
+          .call(() => {
+            showLayer(layer2);
+            hideLayer(layer3);
+            currentLayer = 2;
+          });
       } else {
         gsap
           .timeline()
@@ -347,24 +394,22 @@ window.onload = function() {
             { force3D: false, ease: Power1.easeInOut, opacity: 1 },
             "<"
           )
-          .to(
-            askForPriceButton,
-            0.5,
-            { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          .add(
+            moveButton(
+              sendInquiryButton,
+              askForPriceButton,
+              "Zapytaj o cenę",
+              () => {
+                hide(sendInquiryButton);
+                askForPriceButton.style.opacity = 1;
+              }
+            ),
             "<"
           )
           .to(
             mainText,
             0.5,
             { force3D: false, ease: Power1.easeInOut, opacity: 1 },
-            "<"
-          )
-          .add(
-            moveElement(
-              askForPriceButton,
-              layer2AskForPriceButtonContainer,
-              () => {}
-            ),
             "<"
           )
           .call(() => hideLayer(layer3));
@@ -374,6 +419,44 @@ window.onload = function() {
 
   askForPriceButton.onclick = () => {
     if (mobile) {
+      gsap
+        .timeline()
+        .call(() => showLayer(layer3))
+        .add(moveElement(mainText, layer3MainTextContainer))
+        .to(
+          logo,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0.1 },
+          "<"
+        )
+        .to(
+          layer2Description,
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 0 },
+          "<"
+        )
+        .to(
+          ".contact-form",
+          0.5,
+          { force3D: false, ease: Power1.easeInOut, opacity: 1 },
+          "<"
+        )
+        .add(
+          moveButton(
+            askForPriceButton,
+            layer3SendInquiryButtonContainer,
+            "Wyślij zapytanie",
+            () => {
+              show(sendInquiryButton);
+              hide(askForPriceButton);
+            }
+          ),
+          "<"
+        )
+        .call(() => {
+          hideLayer(layer2);
+          currentLayer = 3;
+        });
     } else {
       gsap
         .timeline()
@@ -411,13 +494,21 @@ window.onload = function() {
           "<"
         )
         .add(
-          moveElement(
+          moveButton(
             askForPriceButton,
-            layer3AskForPriceButtonContainer,
-            () => {}
+            sendInquiryButton,
+            "Wyślij zapytanie",
+            () => {
+              show(sendInquiryButton);
+              askForPriceButton.style.opacity = 0;
+            }
           ),
           "<"
-        );
+        )
+        .call(() => {
+          showLayer(layer3);
+          hideLayer(layer2);
+        });
     }
   };
 
@@ -438,7 +529,10 @@ window.onload = function() {
 
     const setMinWidth = (element, sampleElement) => {
       element.style["min-width"] = `${sampleElement.offsetWidth}px`;
-      // element.style["max-width"] = `${sampleElement.offsetWidth}px`;
+    };
+
+    const setMaxWidth = (element, sampleElement) => {
+      element.style["max-width"] = `${sampleElement.offsetWidth}px`;
     };
 
     setMinHeight(layer1MainTextContainer, mainText);
@@ -447,14 +541,28 @@ window.onload = function() {
     setMinHeight(layer2MainTextContainer, mainText);
     setMinHeight(layer3MainTextContainer, mainText);
 
-    askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
-    layer3MainTextContainer.style.left = `${
-      layer2MainTextContainer.getBoundingClientRect().x
-    }px`;
-    layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
-      .y + mainText.offsetHeight}px`;
+    // askForPriceButton.style.width = `${layer2AskForPriceButtonContainer.offsetWidth}px`;
+    if (mobile) {
+      setMinWidth(layer2MainTextContainer, mainText);
+      setMaxWidth(layer2MainTextContainer, mainText);
+      setMinWidth(layer3MainTextContainer, mainText);
+      setMaxWidth(layer3MainTextContainer, mainText);
+      const zeroY = layer3MainTextContainer.getBoundingClientRect().y;
+      const logoRect = logo.getBoundingClientRect();
+      const logoMiddle = logoRect.y + logoRect.height / 2;
+      const targetTop = -1 * (zeroY - logoMiddle);
+      layer3MainTextContainer.style.transform = `translateY(${targetTop}px)`;
+    } else {
+      layer3MainTextContainer.style.left = `${
+        layer2MainTextContainer.getBoundingClientRect().x
+      }px`;
+      layer3MainTextContainer.style.top = `-${layer3MainTextContainer.getBoundingClientRect()
+        .y + mainText.offsetHeight}px`;
+    }
 
     setMinHeight(layer2AskForPriceButtonContainer, askForPriceButton);
+    setMaxWidth(layer2AskForPriceButtonContainer, askForPriceButton);
+
     setMinWidth(layer1ShowMoreButtonContainer, showMoreButton);
     setMinWidth(layer1MainTextContainer, mainText);
   }
