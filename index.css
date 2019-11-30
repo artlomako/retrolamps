@@ -178,6 +178,10 @@ body {
   margin-bottom: 4rem;
 }
 
+.layer-2__description-break{
+  display: none;
+}
+
 .layer-3 {
   z-index: 0;
   visibility: hidden;
@@ -364,7 +368,7 @@ body {
   }
 
   .layer-2 {
-    padding: 2rem 3.5rem 0 3.5rem;
+    padding: 2rem 3.5rem 3rem 3.5rem;
   }
 
   .layer-2__description-container {
@@ -373,7 +377,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   .layer-2__description {
@@ -381,6 +385,14 @@ body {
     line-height: 1.4rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .layer-2__description-break{
+    display: block;
   }
 
   .ask-for-price-button {
