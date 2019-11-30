@@ -5,6 +5,7 @@ function moveButton(
   endCallback
 ) {
   const fakeContent = document.createElement("div");
+  fakeContent.classList.add("fake-content");
   const realContent = sourceButton.querySelector(".content");
   fakeContent.innerHTML = targetButtonContent;
 
@@ -13,20 +14,15 @@ function moveButton(
   const sourceW = sourceRect.width;
   const targetW = targetRect.width;
   let targetX = targetRect.x - sourceRect.x;
-  if(sourceRect.left > targetRect.left ){
-    targetX-=((sourceW - targetW) / 2)
+  if (sourceRect.left > targetRect.left) {
+    targetX -= (sourceW - targetW) / 2;
   }
   const targetY = targetRect.top - sourceRect.top;
 
   return gsap
     .timeline()
     .set(fakeContent, {
-      opacity: 0,
-      position: "absolute",
-      xPercent: -50,
-      yPercent: -50,
-      left: "50%",
-      top: "50%"
+      opacity: 0
     })
     .call(() => sourceButton.appendChild(fakeContent))
     .to(sourceButton, 0.5, {

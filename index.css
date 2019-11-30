@@ -27,6 +27,26 @@ body {
   border-style: solid;
   outline: none;
   white-space: nowrap;
+  position: relative;
+}
+
+.button > .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.button > .fake-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .arrow-button {
@@ -226,7 +246,7 @@ body {
 
 .send-inquiry-button > .content::before {
   content: "Wyślij zapytanie";
-}
+} 
 
 .main-container__footer {
   z-index: 100;
@@ -318,6 +338,11 @@ body {
 }
 
 @media (max-width: 425px) {
+  .arrow-button {
+    width: 2rem;
+    height: 2rem;
+  }
+
   .button {
     border-width: 1px;
   }
@@ -354,7 +379,6 @@ body {
 
   .layer-1__show-more-button {
     padding: 0 2.5rem;
-    position: relative;
   }
 
   .layer-1__show-more-button > .content::before {
@@ -427,6 +451,10 @@ body {
     display: none;
   }
 
+  .layer-3__title {
+    display: none;
+  }
+
   .contact-form {
     flex-grow: 1;
     justify-content: center;
@@ -436,9 +464,20 @@ body {
     width: 100%;
   }
 
+  .contact-form__agreement-checkbox {
+    text-align: left;
+  }
+
+  .layer-3__container {
+    min-width: auto;
+  }
 }
 
 @media (max-width: 375px) {
+  .button {
+    font-size: 0.6rem;
+  }
+
   .main-text {
     font-size: 0.8rem;
   }
@@ -451,8 +490,25 @@ body {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
+
   .layer-2 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .layer-3 {
+    padding: 1rem 2.5rem;
+  }
+
+  .layer-3__container {
+    width: 100%;
+  }
+
+  .layer-2__description {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-form {
+    justify-content: flex-end;
   }
 }

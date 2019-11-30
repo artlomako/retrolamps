@@ -547,6 +547,7 @@ window.onload = function() {
       setMaxWidth(layer2MainTextContainer, mainText);
       setMinWidth(layer3MainTextContainer, mainText);
       setMaxWidth(layer3MainTextContainer, mainText);
+      setMaxWidth(layer3SendInquiryButtonContainer, sendInquiryButton)
       const zeroY = layer3MainTextContainer.getBoundingClientRect().y;
       const logoRect = logo.getBoundingClientRect();
       const logoMiddle = logoRect.y + logoRect.height / 2;
