@@ -90,7 +90,7 @@ body {
   background-image: url("./background.jpg");
   background-size: cover;
   background-position: 100%;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .background__border {
@@ -341,6 +341,7 @@ body {
   .arrow-button {
     width: 2rem;
     height: 2rem;
+    background-size: 0.7rem;
   }
 
   .button {
@@ -501,6 +502,7 @@ body {
 
   .layer-3__container {
     width: 100%;
+    justify-content: center;
   }
 
   .layer-2__description {
@@ -510,5 +512,6 @@ body {
 
   .contact-form {
     justify-content: flex-end;
+    flex-grow: 0;
   }
 }
