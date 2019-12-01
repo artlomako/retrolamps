@@ -246,7 +246,7 @@ body {
 
 .send-inquiry-button > .content::before {
   content: "Wyślij zapytanie";
-} 
+}
 
 .main-container__footer {
   z-index: 100;
@@ -338,14 +338,15 @@ body {
 }
 
 @media (max-width: 425px) {
-  .arrow-button {
-    width: 2rem;
-    height: 2rem;
-    background-size: 0.7rem;
-  }
-
   .button {
     border-width: 1px;
+    height: 3.5rem;
+  }
+
+  .arrow-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-size: 0.8rem;
   }
 
   .main-container__header {
@@ -354,7 +355,7 @@ body {
   }
 
   .header__logo {
-    max-height: 3.5rem;
+    max-height: 3rem;
   }
 
   .background__image {
@@ -363,11 +364,12 @@ body {
 
   .button {
     font-weight: 600;
+    font-size: 0.8rem;
   }
 
   .layer-1 {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
     justify-content: center;
     align-items: center;
   }
@@ -376,6 +378,8 @@ body {
     text-align: center;
     font-size: 1rem;
     line-height: 1.8;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .layer-1__show-more-button {
@@ -404,7 +408,7 @@ body {
   }
 
   .layer-2 {
-    padding: 2rem 3.5rem 3rem 3.5rem;
+    padding: 1rem 2.5rem;
   }
 
   .layer-2__description-container {
@@ -419,12 +423,13 @@ body {
   .layer-2__description {
     text-align: center;
     line-height: 1.4rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .layer-2__description-break {
@@ -441,11 +446,10 @@ body {
 
   .layer-2__ask-for-price-button-container {
     display: flex;
-    /* justify-content: center; */
   }
 
   .layer-3 {
-    padding: 2rem 3.5rem 3rem 3.5rem;
+    padding: 1rem 2.5rem;
   }
 
   .layer-3__description {
@@ -457,8 +461,8 @@ body {
   }
 
   .contact-form {
-    flex-grow: 1;
-    justify-content: center;
+    justify-content: flex-end;
+    flex-grow: 0;
   }
 
   .ask-for-price-button {
@@ -471,47 +475,21 @@ body {
 
   .layer-3__container {
     min-width: auto;
-  }
-}
-
-@media (max-width: 375px) {
-  .button {
-    font-size: 0.6rem;
-  }
-
-  .main-text {
-    font-size: 0.8rem;
-  }
-
-  .header__logo {
-    max-height: 3rem;
-  }
-
-  .layer-1 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-
-  .layer-2 {
-    padding: 1rem 2.5rem;
-  }
-
-  .layer-3 {
-    padding: 1rem 2.5rem;
-  }
-
-  .layer-3__container {
     width: 100%;
     justify-content: center;
   }
 
-  .layer-2__description {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  .text-field {
+    height: 3.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-text {
+    font-size: 0.8rem;
   }
 
-  .contact-form {
+  .layer-3__container {
     justify-content: flex-end;
-    flex-grow: 0;
   }
 }
