@@ -3,6 +3,10 @@ window.onload = function() {
     document.documentElement.clientWidth,
     window.innerWidth || 0
   );
+  var vh = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight || 0
+  );
 
   const getByClass = className => document.getElementsByClassName(className)[0];
 
@@ -547,7 +551,7 @@ window.onload = function() {
       setMaxWidth(layer2MainTextContainer, mainText);
       setMinWidth(layer3MainTextContainer, mainText);
       setMaxWidth(layer3MainTextContainer, mainText);
-      setMaxWidth(layer3SendInquiryButtonContainer, sendInquiryButton)
+      setMaxWidth(layer3SendInquiryButtonContainer, sendInquiryButton);
       const zeroY = layer3MainTextContainer.getBoundingClientRect().y;
       const logoRect = logo.getBoundingClientRect();
       const logoMiddle = logoRect.y + logoRect.height / 2;
@@ -568,4 +572,10 @@ window.onload = function() {
     setMinWidth(layer1MainTextContainer, mainText);
   }
   adjustContainers();
+
+  let viewport = document.querySelector("meta[name=viewport]");
+  viewport.setAttribute(
+    "content",
+    "height=" + vh + "px, width=" + vw + "px, initial-scale=1.0, maximum-scale=1, user-scalable=0"
+  );
 };
