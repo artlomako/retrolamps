@@ -367,6 +367,10 @@ body {
     font-size: 0.8rem;
   }
 
+  .layer {
+    padding-bottom: 2.5rem;
+  }
+
   .layer-1 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -408,7 +412,7 @@ body {
   }
 
   .layer-2 {
-    padding: 1rem 2.5rem;
+    padding: 2.5rem;
   }
 
   .layer-2__description-container {
@@ -487,6 +491,10 @@ body {
 @media (max-width: 320px) {
   .main-text {
     font-size: 0.8rem;
+  }
+
+  .layer-2 {
+    padding: 1rem 2.5rem;
   }
 
   .layer-3__container {
